@@ -37,10 +37,11 @@ public class FullTimeView extends javax.swing.JFrame {
 
     }
 
-    public FullTimeView(LoginView loginView, String userName) throws SQLException {
-        this.loginView = loginView;
+    public FullTimeView(String userName) throws SQLException {
         initComponents();
         usernameLabel.setText(userName);
+        tblModel = (DefaultTableModel) tblPartTime.getModel();
+        showEmp();
     }
 
     public void showEmp() throws SQLException {
@@ -369,8 +370,11 @@ public class FullTimeView extends javax.swing.JFrame {
         int basicsalary = Integer.parseInt(txtBasicSalary.getText());
         int timework = Integer.parseInt(txtTimeWork.getText());
         int salary;
+        
         Employee.Employee full = fac.createEmp("full");
-        full = new Employee.EmployeeBuilder().buildName(name).buildPhone(phone).buildMail(email).buildDepartment(department).buildAge(age).buildBasicSalary(basicsalary).buildTimework(timework).build();
+        full = new Employee.EmployeeBuilder().buildName(name).buildPhone(phone).buildMail(email)
+                .buildDepartment(department).buildAge(age).buildBasicSalary(basicsalary)
+                .buildTimework(timework).build();
         try {
             FullTime.Add(full);
             showEmp();
@@ -384,7 +388,7 @@ public class FullTimeView extends javax.swing.JFrame {
         try {
             list = FullTime.Load();
         } catch (SQLException ex) {
-            Logger.getLogger(FullTimeView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PartTimeView.class.getName()).log(Level.SEVERE, null, ex);
         }
         int indexSelect = tblPartTime.getSelectedRow();
         int id = list.get(indexSelect).getId();
@@ -404,7 +408,7 @@ public class FullTimeView extends javax.swing.JFrame {
             FullTime.arrayDispose();
             showEmp();
         } catch (SQLException ex) {
-            Logger.getLogger(FullTimeView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PartTimeView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -414,13 +418,13 @@ public class FullTimeView extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        HomeView home = new HomeView();
-        home.setVisible(true);
+        new HomeView(usernameLabel.getText()).setVisible(true);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        loginView.setVisible(true);
+        LoginView login=new LoginView();
+        login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
 

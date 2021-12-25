@@ -47,10 +47,6 @@ public class FullTime extends Employee {
         return full;
 
     }
-    public static void Remove(List<Employee> list){
-        list.removeAll(list);
-    }
-
     public static void Add(Employee emp) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -75,13 +71,7 @@ public class FullTime extends Employee {
 
     }
 
-//    public static void unique(Employee emp) {
-//        for (int i = 0; i < part.size(); i++) {
-//            if (emp.getId() == part.get(i).getId()) {
-//                throw new IllegalArgumentException("Record against this ID '" + emp.getId() + "' is already exist ");
-//            }
-//        }
-//    }
+
     public static void arrayDispose() {
         full.clear();
     }
@@ -151,24 +141,6 @@ public class FullTime extends Employee {
 
     }
 
-//    public static void DeleteRecord(Employee emp) {
-//        try {
-//
-////            LoginHandling.DeleteRecord(pi1.getId());
-//            DBConnection.query("DELETE FROM parttime WHERE id = " + emp.getId() + ";");
-//
-//            for (int i = 0; i < part.size(); i++) {
-//                if (part.get(i).getId() == emp.getId()) {
-//                    part.remove(i);
-//                    break;
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            throw new IllegalArgumentException(e.getMessage());
-//        }
-//
-//    }
     public static void Delete(Employee emp) {
         Connection conn = null;
         PreparedStatement pp = null;

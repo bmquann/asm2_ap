@@ -46,7 +46,5 @@ public class Login {
         }
         return false;
    }
-    public static void main(String[] args) throws SQLException {
-        System.out.println(access("admin", "123"));
-    }
+
 }

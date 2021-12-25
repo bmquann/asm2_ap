@@ -37,10 +37,12 @@ public class PartTimeView extends javax.swing.JFrame {
 
     }
 
-    public PartTimeView(LoginView loginView, String userName) throws SQLException {
-        this.loginView = loginView;
+    public PartTimeView(String userName) throws SQLException {
+
         initComponents();
         usernameLabel.setText(userName);
+        tblModel = (DefaultTableModel) tblPartTime.getModel();
+        showEmp();
     }
 
     public void showEmp() throws SQLException {
@@ -369,8 +371,11 @@ public class PartTimeView extends javax.swing.JFrame {
         int basicsalary = Integer.parseInt(txtBasicSalary.getText());
         int timework = Integer.parseInt(txtTimeWork.getText());
         int salary;
+        EmployeeFactory fac = new EmployeeFactory();
         Employee.Employee part = fac.createEmp("part");
-        part = new Employee.EmployeeBuilder().buildName(name).buildPhone(phone).buildMail(email).buildDepartment(department).buildAge(age).buildBasicSalary(basicsalary).buildTimework(timework).build();
+        part = new Employee.EmployeeBuilder().buildName(name).buildPhone(phone)
+                .buildMail(email).buildDepartment(department).buildAge(age)
+                .buildBasicSalary(basicsalary).buildTimework(timework).build();
         try {
             PartTime.Add(part);
             showEmp();
@@ -414,13 +419,13 @@ public class PartTimeView extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        HomeView home = new HomeView();
-        home.setVisible(true);
+        new HomeView(usernameLabel.getText()).setVisible(true);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        loginView.setVisible(true);
+        LoginView login=new LoginView();
+        login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
 

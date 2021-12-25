@@ -30,6 +30,11 @@ public class HomeView extends javax.swing.JFrame {
         initComponents();
 
     }
+    public HomeView(String userName){
+        initComponents();
+        usernameLabel.setText(userName);
+                        setIMG();
+    }
 
     private void setIMG() {
         try {
@@ -149,10 +154,9 @@ public class HomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartActionPerformed
-        PartTimeView part;
+
         try {
-            part = new PartTimeView();
-            part.setVisible(true);
+            new PartTimeView( usernameLabel.getText()).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,7 +164,12 @@ public class HomeView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPartActionPerformed
 
     private void btnFullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFullActionPerformed
-        fullView.setVisible(true);
+        
+        try {
+            new FullTimeView( usernameLabel.getText()).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnFullActionPerformed
 
     /**
